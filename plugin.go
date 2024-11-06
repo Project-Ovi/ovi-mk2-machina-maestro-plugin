@@ -19,7 +19,7 @@ import (
 	"golang.org/x/image/colornames"
 )
 
-var thisModel *helper.Model
+var thisModel = &helper.Model{}
 var defaultCommands *[]helper.Command
 
 func Form(form *fyne.Container) {
