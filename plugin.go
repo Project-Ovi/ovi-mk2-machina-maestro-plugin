@@ -20,13 +20,7 @@ import (
 )
 
 var thisModel *helper.Model
-var workingDirectory string
 var defaultCommands *[]helper.Command
-
-func Initi(wd string, model *helper.Model) {
-	thisModel = model
-	workingDirectory = wd
-}
 
 func Form(form *fyne.Container) {
 	// Add IP entry
@@ -41,7 +35,7 @@ func Form(form *fyne.Container) {
 	)
 }
 
-func Save(form *fyne.Container) string {
+func Save(form *fyne.Container, workingDirectory string) (string, *helper.Model) {
 	//
 	canContinue := true
 	errorMsg := ""
@@ -80,7 +74,7 @@ func Save(form *fyne.Container) string {
 
 	// If something is wrong, quit
 	if !canContinue {
-		return errorMsg
+		return errorMsg, nil
 	}
 
 	// Parse model information
@@ -105,7 +99,7 @@ func Save(form *fyne.Container) string {
 	}
 
 	// Return any error messages
-	return errorMsg
+	return errorMsg, thisModel
 }
 func Load() {
 	// * Helper functions
